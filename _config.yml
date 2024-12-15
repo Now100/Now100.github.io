@@ -193,6 +193,15 @@ defaults:
       layout: page
       permalink: /:title/
 
+jekyll_compose:
+  default_front_matter:
+    posts:
+      layout: "post"
+      categories: []
+      tags: []
+      published: true
+      sitemap: true
+
 sass:
   style: compressed
 
