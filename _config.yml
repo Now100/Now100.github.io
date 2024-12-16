@@ -119,10 +119,10 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: Now100/Now100.github.io # <gh-username>/<repo>
-    repo_id: R_kgDONd0xLQ
-    category: General
-    category_id: DIC_kwDONd0xLc4ClPn
+    repo: 'Now100/Now100.github.io' # <gh-username>/<repo>
+    repo_id: 'R_kgDONd0xLQ'
+    category: 'General'
+    category_id: 'DIC_kwDONd0xLc4ClPn'
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
