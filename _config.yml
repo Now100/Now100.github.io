@@ -202,6 +202,7 @@ jekyll_compose:
       tags: []
       published: true
       sitemap: true
+      math : true
 
 sass:
   style: compressed
