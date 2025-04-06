@@ -41,14 +41,16 @@ class MultiHeadAttention(nn.Module):
         return self.linear(out), attn
 ```
 
-멀티헤드 어텐션(Multi-Head Attention)의 코드 구현을 보고 헷갈리는 부분이 있었습니다. Query, Key, Value를 구하는 부분이었는데요.
+멀티헤드 어텐션(Multi-Head Attention)의 코드 구현을 보고 헷갈리는 부분이 있었습니다.  
+Query, Key, Value를 구하는 부분이었는데요.
 
 ```python
 Q = self.W_q(Q).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
 K = self.W_k(K).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
 V = self.W_v(V).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
 ```
-왜 `reshape(batch_size, self.num_heads, -1, self.d_k)`와 같이 `reshape()` 메서드를 활용해 텐서의 모양을 바꾸지않고 번거로이 `view()`와 `transpose()`를 사용하는지 이해가 가지 않았습니다. 그래서 직적 다음 코드를 통해 실습을 해보고 답을 얻었는데요.
+왜 `reshape(batch_size, self.num_heads, -1, self.d_k)`와 같이 `reshape()` 메서드를 활용해 텐서의 모양을 바꾸지않고 번거로이 `view()`와 `transpose()`를 사용하는지 이해가 가지 않았습니다.  
+그래서 직적 다음 코드를 통해 실습을 해보고 답을 얻었는데요.
 
 ```python
 import torch
@@ -66,7 +68,8 @@ x = torch.tensor([
     ]
 ])  # shape: (2, 3, 6)
 ```
-위 코드는 `batch_size = 2`, `seq_len = 3`, `d_model = 6`, `num_heads = 3`인 예시입니다. 위 예제에서 우리가 바꾸고자 하는 모양은 한 시퀀스에 대한 한 헤드의 쿼리, 키, 밸류가 마지막에 오는 모양입니다. 그래야 각 헤드가 해당 시퀀스에 대한 어텐션 계산을 할 수 있을테니까요.  
+위 코드는 `batch_size = 2`, `seq_len = 3`, `d_model = 6`, `num_heads = 3`인 예시입니다.  
+위 예제에서 우리가 바꾸고자 하는 모양은 한 시퀀스에 대한 한 헤드의 쿼리, 키, 밸류가 마지막에 오는 모양입니다. 그래야 각 헤드가 해당 시퀀스에 대한 어텐션 계산을 할 수 있을테니까요.  
 그렇다면 `reshape()` 메서드를 통해 `x` 배치의 모양을 바꿔봅시다.
 
 ```python
@@ -89,7 +92,8 @@ tensor([
     ]
 ])
 ```
-우리가 원하는 것은 `[1., 2.], [ 7.,  8.], [13., 14.]`가 하나의 시퀀스로 매핑되어 첫번째 어텐션 헤드의 입력으로 들어가길 원합니다. 하지만 위와 같이 `reshape()` 메서드만으로는 모양만 맞춰줄 수 있을 뿐 원하는 결과를 만들어낼 수 없습니다.
+우리가 원하는 것은 `[1., 2.], [ 7.,  8.], [13., 14.]`가 하나의 시퀀스로 매핑되어 첫번째 어텐션 헤드의 입력으로 들어가길 원합니다.  
+하지만 위와 같이 `reshape()` 메서드만으로는 모양만 맞춰줄 수 있을 뿐 원하는 결과를 만들어낼 수 없습니다.
 
 ```python
 batch_size, seq_len, d_model = x.shape
@@ -126,4 +130,5 @@ x = torch.tensor([
 ```
 메모리: `[1, 2, 3, 4, 5, 6]`  
 
-`reshape()` 메서드는 이렇게 flat하게 저장된 텐서를 단순히 입력받은 모양대로 끊어서 저장합니다. 따라서 `reshape()` 메서드를 복잡한 텐서에 적용하게 되면 원하는 대로 텐서를 조작하기 어려운 상황이 발생합니다. 
+`reshape()` 메서드는 이렇게 flat하게 저장된 텐서를 단순히 입력받은 모양대로 끊어서 저장합니다.  
+따라서 `reshape()` 메서드를 복잡한 텐서에 적용하게 되면 원하는 대로 텐서를 조작하기 어려운 상황이 발생합니다. 
