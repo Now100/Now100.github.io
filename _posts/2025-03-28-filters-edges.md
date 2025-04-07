@@ -473,7 +473,7 @@ Non-Maximum Suppression (NMS)는 경계선 검출 과정에서 불필요한 픽�
 5. **결과 생성**  
     위 단계를 통해 노이즈가 제거되고 연속적인 경계선만 남은 최종 결과를 생성합니다.
 
-Canny Edge Detector는 이러한 단계를 통해 노이즈에 강하고, 연속적인 경계선을 효과적으로 검출할 수 있습니다. 아래는 Canny Edge Detector의 전체 흐름을 시각화한 예시입니다:
+Canny Edge Detector는 이러한 단계를 통해 노이즈에 강하고, 연속적인 경계선을 효과적으로 검출할 수 있습니다. 아래는 Canny Edge Detector의 결과물을 시각화한 예시입니다:
 
 <figure>
      <img src="../assets/img/2025-03-28-filters-edges/image15.png" alt="canny">
