@@ -542,7 +542,9 @@ cout << str.at(4); // Outputs 'o'
   ```
 
 #### Null in `string`
-`std::string` 클래스는 null 문자(`\0`)를 포함할 수 있습니다. 그러나 `std::string`은 null 문자를 특별히 처리하지 않으며, 문자열의 길이를 계산하거나 출력할 때 null 문자를 포함한 전체 문자열을 처리합니다.
+`std::string` 클래스는 null 문자(`\0`)를 포함할 수 있습니다. 그러나 `std::string`은 null 문자를 특별히 처리하지 않으며, 문자열의 길이를 계산하거나 출력할 때 null 문자를 포함한 전체 문자열을 처리합니다.  
+하지만 리터럴로 `string`의 값을 초기화 할 때는 얘기가 달라집니다. 아래 예시에서 `"Hello\0World"`는 C-string 리터럴입니다. c-string 리터럴에서 \0은 문자열 끝을 의미하기에 아래와 같이 `string`을 초기화하게 되면 실제로는 "Hello" 만 복사되게 됩니다.  
+따라서 null 문자를 포함하는 `string`을 포함하기 위해선 constructor와 같은 방법을 이용해야합니다.  
 
 ```cpp
 #include <iostream>
@@ -550,16 +552,15 @@ cout << str.at(4); // Outputs 'o'
 using namespace std;
 
 int main() {
-    string str = "Hello\0World";
-    cout << "String: " << str << endl; // Outputs "Hello"
-    cout << "Length: " << str.length() << endl; // Outputs 11
+    string str1 = "Hello\0World";
+    string str2("Hello\0World", 11); 
+    cout << "str1: " << str1 << endl; // Outputs "Hello"
+    cout << "str2: " << str2 << endl; // Outputs "Hello"
+    cout << "Length of str1: " << str1.length() << endl; // Outputs 5
+    cout << "Length of str2: " << str2.length() << endl; // Outputs 11
     return 0;
 }
 ```
-
-위 코드에서 `str`은 null 문자를 포함하지만, `std::string`은 null 문자를 문자열의 끝으로 간주하지 않습니다. 따라서 `str.length()`는 전체 문자열의 길이(11)를 반환합니다.
-
-이와 같은 특성은 C-String과의 주요 차이점 중 하나입니다. C-String은 null 문자를 문자열의 끝으로 간주하지만, `std::string`은 null 문자를 일반 문자로 처리합니다.
 
 ### `getline`
 
