@@ -3,7 +3,7 @@ layout: post
 title: 'Image Filtering'
 date: 2025-03-28 21:48 +0900
 categories: ['인공지능', '컴퓨터비전']
-tags: ['컴퓨터비전']
+tags: ['컴퓨터비전', '강의정리']
 published: true
 sitemap: true
 math: true
