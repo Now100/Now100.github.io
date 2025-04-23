@@ -136,7 +136,8 @@ $$
 - $ k, l $은 필터의 크기에 따라 정의된 인덱스입니다.
 
 - 예시  
-    이미지 행렬  
+    이미지 행렬   
+
     $$
     \begin{bmatrix}
     1 & 2 & 3 & 4 \\
@@ -147,6 +148,7 @@ $$
     $$
 
     필터(커널) 행렬  
+
     $$
     \begin{bmatrix}
     a & b & c \\
@@ -155,7 +157,8 @@ $$
     \end{bmatrix}
     $$
 
-    Filtered image  
+    Filtered image   
+
     $$
     \begin{bmatrix}
     1a + 2b + 3c + 5d + 6e + 7f + 9g + 10h + 11i & 2a + 3b + 4c + 6d + 7e + 8f + 10g + 11h + 12i \\
@@ -168,6 +171,7 @@ Filtered 된 행렬의 크기가 원본보다 줄어든 것을 알 수 있는데
 
 - 예시  
     Zero padding을 적용한 이미지 행렬  
+
     $$
     \begin{bmatrix}
     0 & 0 & 0 & 0 & 0 & 0 \\
@@ -179,7 +183,8 @@ Filtered 된 행렬의 크기가 원본보다 줄어든 것을 알 수 있는데
     \end{bmatrix}
     $$
 
-    Filtered image
+    Filtered image  
+
     $$
     \begin{bmatrix}
     1e + 2f + 5h + 6i & 1d + 2e + 3f + 5g + 6h + 7i & 2d + 3e + 4f + 6g + 7h + 8i & 3d + 4e + 7g + 8h \\
@@ -192,7 +197,8 @@ Filtered 된 행렬의 크기가 원본보다 줄어든 것을 알 수 있는데
     동일한 4 by 4 행렬이 생성됨을 알 수 있습니다.
 
 ##### Examples of Kernels
-- **Identity**  
+- **Identity**    
+
 $$
 \begin{bmatrix}
 0 & 0 & 0 \\
@@ -202,65 +208,74 @@ $$
 $$
 해당 커널은 필터링 후에도 원본과 동일한 결과를 생성합니다.
 
-- **Shifting**
+- **Shifting**  
+
 $$
 \begin{bmatrix}
 0 & 0 & 0 \\
 1 & 0 & 0 \\
 0 & 0 & 0
 \end{bmatrix}
-$$
+$$  
+
 이 커널은 이미지를 오른쪽으로 한 픽셀 이동시키는 효과를 냅니다.  
 1의 위치에 따라 이동의 방향을 다르게 할 수 있습니다.
 
-- **Box Blur**
+- **Box Blur**  
+
 $$
 \begin{bmatrix}
 \frac{1}{9} & \frac{1}{9} & \frac{1}{9} \\
 \frac{1}{9} & \frac{1}{9} & \frac{1}{9} \\
 \frac{1}{9} & \frac{1}{9} & \frac{1}{9}
 \end{bmatrix}
-$$
+$$  
+
 이 커널은 이미지의 각 픽셀 값을 주변 픽셀 값들의 평균으로 대체하여 이미지를 부드럽게 만드는 효과를 냅니다.  
 Box Blur는 노이즈 제거 및 이미지의 세부 사항을 흐리게 하는 데 사용됩니다.
 
-- **Gaussian Blur**
+- **Gaussian Blur**  
+
 $$
 \begin{bmatrix}
 \frac{1}{16} & \frac{2}{16} & \frac{1}{16} \\
 \frac{2}{16} & \frac{4}{16} & \frac{2}{16} \\
 \frac{1}{16} & \frac{2}{16} & \frac{1}{16}
 \end{bmatrix}
-$$
+$$  
+
 Gaussian 함수는 중심에서 가장 높은 값을 갖는 특성이 있습니다. Gaussian Blur 방식은 이 특징을 이용해 가운데 픽셀에 높은 가중치를 주는 방법으로 평균을 냅니다.   
 해당 필터링을 통해 더 효과적인 노이즈 제거가 가능해집니다.  
 
-    $$
-    G(x, y) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2 + y^2}{2\sigma^2}}
-    $$
+$$  
+G(x, y) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2 + y^2}{2\sigma^2}}
+$$  
 
-    여기서,  
-    - $ G(x, y) $는 Gaussian 커널의 값입니다.  
-    - $ \sigma $는 표준 편차로, 블러의 강도를 조절합니다.  
-    - $ x, y $는 커널의 좌표입니다.  
+여기서,  
+- $ G(x, y) $는 Gaussian 커널의 값입니다.  
+- $ \sigma $는 표준 편차로, 블러의 강도를 조절합니다.  
+- $ x, y $는 커널의 좌표입니다.  
 
-    <figure>
-        <img src="../assets/img/2025-03-28-filters-edges/image5.png" alt="filter">
-        <figcaption>Gaussian filter의 시각화</figcaption>
-    </figure>
+<figure>
+    <img src="../assets/img/2025-03-28-filters-edges/image5.png" alt="filter">
+    <figcaption>Gaussian filter의 시각화</figcaption>
+</figure>
 
-- **Image Sharpening**
+- **Image Sharpening**  
+
 $$
 \begin{bmatrix}
 0 & -1 & 0 \\
 -1 & 5 & -1 \\
 0 & -1 & 0
 \end{bmatrix}
-$$
+$$  
+
 이 커널은 이미지의 경계를 강조하고 세부 사항을 더 선명하게 만드는 데 사용됩니다.  
 Sharpening 필터는 이미지의 중심 픽셀과 주변 픽셀간의 차이를 강조해 표현합니다.  
 
-- **Image Differenciation**  
+- **Image Differenciation**    
+
 $$
 \frac{\partial I}{\partial x}
 $$
@@ -282,7 +297,8 @@ $$
 0 & 0 & 0 \\
 1 & 1 & 1
 \end{bmatrix}
-$$
+$$  
+
 
 위의 커널들은 각각 $ x $-축과 $ y $-축 방향으로의 미분을 수행하여 이미지의 경계선을 감지하는 데 사용됩니다.  
 이러한 미분 연산은 이미지의 밝기 변화가 급격한 영역(즉, 경계선)을 강조합니다.
@@ -292,7 +308,8 @@ Convolution은 필터링 연산의 또 다른 형태로, 필터를 이미지에 
 
 $$
 I'(i, j) = \sum_{k,l \in \\{-1,0,1\\}}^{}I(i+k, j+l) \cdot K(-k, -l)
-$$
+$$  
+
 
 여기서,  
 - $ K(-k, -l) $는 필터(커널)를 뒤집은 값입니다.  
@@ -328,7 +345,8 @@ $$
 ##### Sobel Filter
 Sobel 필터는 경계선 검출을 위해 이미지의 밝기 변화율을 계산하는 필터입니다. 이는 Gaussian Blur와 미분 연산을 Convolution으로 결합하여 노이즈에 강한 경계선 검출을 수행합니다. Sobel 필터는 $ x $-축과 $ y $-축 방향으로 각각 다음과 같은 커널을 사용합니다:
 
-- $ x $-축 방향 필터:
+- $ x $-축 방향 필터:  
+
 $$
 \begin{bmatrix}
 -1 & 0 & 1 \\
@@ -337,7 +355,8 @@ $$
 \end{bmatrix}
 $$
 
-- $ y $-축 방향 필터:
+- $ y $-축 방향 필터:  
+
 $$
 \begin{bmatrix}
 -1 & -2 & -1 \\
@@ -348,13 +367,15 @@ $$
 
 (수는 임의의 값)
 
-위 필터들은 모두 Convolution의 특성을 이용해   
+위 필터들은 모두 Convolution의 특성을 이용해     
+
 $$
     (I*\frac{\partial I}{\partial x})*Gaussian = I*(\frac{\partial I}{\partial x}*Gaussian)
 $$
 $$
     (I*\frac{\partial I}{\partial y})*Gaussian = I*(\frac{\partial I}{\partial y}*Gaussian)
-$$
+$$  
+
 와 같이 얻어낸 필터입니다.
 
 Sobel 필터를 적용한 결과는 다음과 같이 계산됩니다:
@@ -412,7 +433,7 @@ Non-Maximum Suppression (NMS)는 경계선 검출 과정에서 불필요한 픽�
      <figcaption>Non-Maximum Suppression 적용 예시, 해당 픽셀은 local maximum이므로 살아남는다.(그라디언트에 직교하는 방향으로 비교해야함)</figcaption>
 </figure>
 
-1. **그래디언트 방향 계산**  
+1. **그래디언트 방향 계산**   
     각 픽셀의 그래디언트 방향을 기준으로 경계선이 가장 강한 방향을 결정합니다. 그래디언트 방향은 0°, 45°, 90°, 135°로 양자화됩니다.
 
 2. **Local Maximum 비교**  
@@ -421,7 +442,7 @@ Non-Maximum Suppression (NMS)는 경계선 검출 과정에서 불필요한 픽�
     - 그렇지 않다면, 해당 픽셀은 제거됩니다.
     - 0°, 45°, 90°, 135°로 양자화 하지 않고, 보간법을 이용해 해당 방법을 이용할 수 있습니다.
 
-3. **결과 생성**  
+3. **결과 생성**   
     위 과정을 통해 얇고 명확한 경계선만 남게 됩니다.
 
 <figure>
@@ -429,7 +450,8 @@ Non-Maximum Suppression (NMS)는 경계선 검출 과정에서 불필요한 픽�
      <figcaption>Non-Maximum Suppression 적용 전후 비교</figcaption>
 </figure>
 
-##### Hysteresis Thresholding
+##### Hysteresis Thresholding  
+
 균일한 Threshold를 사진 전체에 적용한다면, 한가지 기준으로 엣지가 판별됩니다.   
 하지만 아래 사진과 같이 강한 엣지와 연결되어있는 엣지도 단일 Threshold로 인해 탐지가 되지 않는데요.  
 <figure>
@@ -439,16 +461,16 @@ Non-Maximum Suppression (NMS)는 경계선 검출 과정에서 불필요한 픽�
 이를 보완하기 위해 Hysteresis Thresholding이라는 기법을 사용합니다.  
 이 방법은 경계선 검출 과정에서 노이즈를 제거하고 연속적인 경계선을 유지하기 위해 두 개의 임계값 $ T_{high} $와 $ T_{low} $를 사용하여 경계선을 분류합니다. 다음은 Hysteresis Thresholding의 주요 단계입니다:
 
-1. **강한 경계선 식별**  
+1. **강한 경계선 식별**   
     그래디언트 크기가 $ T_{high} $보다 큰 픽셀은 강한 경계선으로 간주됩니다. 이러한 픽셀은 항상 경계선으로 유지됩니다.
 
-2. **약한 경계선 식별**  
+2. **약한 경계선 식별**   
     그래디언트 크기가 $ T_{low} $와 $ T_{high} $ 사이에 있는 픽셀은 약한 경계선으로 간주됩니다. 이러한 픽셀은 강한 경계선과 연결되어 있는 경우에만 경계선으로 유지됩니다.
 
-3. **노이즈 제거**  
+3. **노이즈 제거**   
     그래디언트 크기가 $ T_{low} $보다 작은 픽셀은 노이즈로 간주되어 제거됩니다.
 
-4. **결과 생성**  
+4. **결과 생성**   
     위 단계를 통해 연속적이고 명확한 경계선만 남게 됩니다.
 
 <figure>
