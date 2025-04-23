@@ -278,20 +278,14 @@ Sharpening 필터는 이미지의 중심 픽셀과 주변 픽셀간의 차이를
 - **Image Differenciation**    
 
 $$
-\frac{\partial I}{\partial x}
-$$
-$$
+\frac{\partial I}{\partial x} =
 \frac{1}{3}
 \begin{bmatrix}
 -1 & 0 & 1 \\
 -1 & 0 & 1 \\
 -1 & 0 & 1
-\end{bmatrix}
-$$
-$$
-\frac{\partial I}{\partial y}
-$$
-$$
+\end{bmatrix} \\
+\frac{\partial I}{\partial y} =
 \frac{1}{3}
 \begin{bmatrix}
 -1 & -1 & -1 \\
