@@ -305,8 +305,39 @@ $$
 각 항 $\lambda_i v_i v_i^T$는 rank 1 행렬로, 각각 입력 벡터 $x$를 $v_i$에 의해 생성된 부분공간으로 투영(projection)하는 투영 행렬이다.  
 
 - **Spectral Theorem**: 대칭 행렬 $A \in \mathbb{R}^{n \times n}$에 대해, 다음과 같은 정리가 성립
-  - $A$는 $n$개의 실수 고유값을 가진다
+  - $A$의 모든 고유값은 실수이다.
+    - 증명:  
+
+    고유벡터 $\mathbf{x} \in \mathbb{C}^n \setminus \{0\}$와 고유값 $\lambda \in \mathbb{C}$에 대해
+
+    $$
+    A \mathbf{x} = \lambda \mathbf{x}
+    $$
+
+    양변에 에르미트 전치 $\mathbf{x}^H$를 곱하면:
+
+    $$
+    \mathbf{x}^H A \mathbf{x} = \lambda \mathbf{x}^H \mathbf{x}
+    $$
+
+    또한 좌변은 다음과 같다:
+
+    $$
+    \mathbf{x}^H A \mathbf{x} = (A \mathbf{x})^H \mathbf{x} = (\lambda \mathbf{x})^H \mathbf{x} = \bar{\lambda} \mathbf{x}^H \mathbf{x}
+    $$
+
+    따라서,
+
+    $$
+    \lambda \mathbf{x}^H \mathbf{x} = \bar{\lambda} \mathbf{x}^H \mathbf{x}
+    \Rightarrow (\lambda - \bar{\lambda}) \mathbf{x}^H \mathbf{x} = 0
+    $$
+
+    $\mathbf{x} \ne 0$이므로 $\mathbf{x}^H \mathbf{x} > 0$, 따라서 $\lambda = \bar{\lambda} \in \mathbb{R}$.
+
   - 고유값의 대수적 중복도는 기하적 중복도와 같다
+    - 증명:  
+
   - 다른 고유값에 대응하는 고유벡터는 서로 직교한다
   - 직교 고유벡터로 대각화 가능하다  
 
