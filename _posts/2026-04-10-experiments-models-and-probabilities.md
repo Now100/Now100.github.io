@@ -385,4 +385,4 @@ $$
 - Multinomial Coefficient: 세가지 이상의 결과가 나오는 실험을 여러 번 반복할 때, 각 결과가 특정 횟수만큼 나타나는 횟수들의 경우의 수를 세는 방법
 
 ---
-해당 포스트는 Yates, R. D., & Goodman, D. J. (2005). Probability and stochastic processes: A friendly introduction for electrical and computer engineers (2nd ed.). John Wiley & Sons, Inc.의 Chapter 1을 기반으로 작성되었습니다.
+해당 포스트는 Roy D. Yates, David J. Goodman의 Probability and Stochastic Processes: A Friendly Introduction for Electrical and Computer Engineers 2nd Edition의 Chapter 1을 요약한 글입니다.
