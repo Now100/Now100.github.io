@@ -8,7 +8,7 @@ published: true
 sitemap: true
 math: true
 ---
-# 1 Experiments, Models and Probabilities
+# 1. Experiments, Models and Probabilities
 ## 1.1 Set Theory
 - **Set and Element**: Set(집합)은 Element(원소)들의 모임이다. 원소는 집합에 속하는 개별적인 객체를 의미한다. 예를 들어, 집합 A = {1, 2, 3}에서 1, 2, 3은 원소이다. ($1 \in A$, $2 \in A$, $3 \in A$)
 - **Subset**: 집합 A의 모든 원소가 집합 B에도 포함되어 있다면, A는 B의 Subset(부분집합)이고 이를 $A \subset B$로 표현한다.
